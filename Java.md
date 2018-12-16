@@ -36,6 +36,8 @@ equals和hashcode有以下的关系
 
 有这个要求的症结在于，要考虑到类似HashMap、HashTable、HashSet的这 种散列的数据类型的运用。
 
+### 二，String，StringBuffer，StringBuilder的区别
+
 
 
 ## 排序
@@ -62,3 +64,32 @@ https://www.cnblogs.com/onepixel/articles/7674659.html
 
 ### 十，计数排序
 
+## 多线程
+
+### 一，volatile关键字的底层实现，volatile是不是原子性的
+
+
+
+## JVM
+
+### 一，Java类为什么要采用双亲委派模型 
+
+为了防止不可信的类扮演被信任的类：例如类java.lang.Object，它存放在 rt.jar中，无论哪个类加载器(Application,Extension)要加载这个类，最终都会 委派给启动类(BootStrap)加载器进行加载，因此Object类在程序的各种类加载 器环境中都是同一个类。相反，如果用户自己写了一个名为java.lang.Object的 类，并放在程序的Classpath中，那系统中将会出现多个不同的Object类，java 类型体系中最基础的行为也无法保证，应用程序也会变得一片混乱。
+
+### 二，什么是双亲委派模型
+
+
+
+
+
+## IO
+
+
+
+## NIO
+
+
+
+
+
+### 	
