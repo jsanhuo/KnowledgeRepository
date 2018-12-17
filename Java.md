@@ -1,7 +1,5 @@
 [TOC]
 
-
-
 # Java
 
 ## Java基础
@@ -30,15 +28,29 @@ equals和hashcode有以下的关系
 
 因为hashcode可能存在碰撞
 
-
-
 在使用HashMap的时候在重写equals方法的时候，一定要重写hashCode方 法。
 
 有这个要求的症结在于，要考虑到类似HashMap、HashTable、HashSet的这 种散列的数据类型的运用。
 
 ### 二，String，StringBuffer，StringBuilder的区别
 
+String在进行修改后会生成新的对象，其内部char[]通过finalStringBuffer和StringBuilder可以通过方法进行字符串修改，并且不会生成新的对象
 
+StringBuffer是线程安全的
+
+StringBuilder线程不安全适合在单线程下运行
+
+### 三，什么是序列化和反序列化
+
+https://blog.csdn.net/qq_27093465/article/details/78544505
+序列化：把对象转换为字节序列的过程
+反序列化：把字节序列转化为对象的过程
+使用情况：
+
+1. 需要将对象持久化，存储在数据库或者文件中的时候
+2. 需要用Socket套接字传输对象的时候
+
+需要注意的是序列化的类必须实现Serializable接口，并且被transient修饰的 字段不参与序列化
 
 ## 排序
 
@@ -68,13 +80,13 @@ https://www.cnblogs.com/onepixel/articles/7674659.html
 
 ### 一，volatile关键字的底层实现，volatile是不是原子性的
 
+底层保证缓存的一致性，在汇编代码之前加了lock指令，保证了在其他线程修改此变量之后，其他线程是可见的
 
+不是原子性，它保证了顺序性和可见性。对任意单个volatile变量的读/写具有原子性，但类似于volatile++这种复合操作不具有原子性。
 
 ### 二，线程池是什么？
 
 线程池是一种多线程的处理形式，处理过程中将任务添加到队列，然后在创建线程后自动启动这些任务。线程池线程都是后台线程。每个线程都使用默认的堆栈大小，以默认的优先级运行。也可以传入自己的线程工厂。
-
-
 
 ### 三，run()和start()的区别
 
@@ -83,8 +95,6 @@ run只是调用了普通方法，其内部的是线程的线程体
 start启动的是线程
 
 启动一个线程是调用start方法，使得线程处于就绪状态，在获取cpu时间片后，就可以直接执行了。
-
-
 
 ## JVM
 
@@ -102,11 +112,7 @@ start启动的是线程
 
 如果想打破双亲委派模型 重写findClass，否则重写loadClass
 
-
-
 ## IO
-
-
 
 ## NIO
 

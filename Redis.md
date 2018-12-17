@@ -12,7 +12,7 @@ https://www.nowcoder.com/discuss/92610?type=2&order=0&pos=29&page=1
 
 - String：字符串 最常规的get/set操作 value为数字的时候还可以进行计数
 - List：列表 底层为链表，可以用来当做消息队列和基于redis的分页
-- Set：集合 不重复的集合
+- Set：集合 不重复的集合，可以进行交并差集的运算
 - Hash：哈希表 类似Java里面的Map 可以存放结构化的对象，可以模拟session
 - Sorted set：有序集合 和set的区别是有权值 
 
