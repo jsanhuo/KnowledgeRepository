@@ -96,6 +96,47 @@ start启动的是线程
 
 启动一个线程是调用start方法，使得线程处于就绪状态，在获取cpu时间片后，就可以直接执行了。
 
+### 四，线程池中Submit和execute的区别
+
+```java
+/**
+     * @throws RejectedExecutionException {@inheritDoc}
+     * @throws NullPointerException       {@inheritDoc}
+     */
+    public Future<?> submit(Runnable task) {
+        if (task == null) throw new NullPointerException();
+        RunnableFuture<Void> ftask = newTaskFor(task, null);
+        execute(ftask);
+        return ftask;
+    }
+
+    /**
+     * @throws RejectedExecutionException {@inheritDoc}
+     * @throws NullPointerException       {@inheritDoc}
+     */
+    public <T> Future<T> submit(Runnable task, T result) {
+        if (task == null) throw new NullPointerException();
+        RunnableFuture<T> ftask = newTaskFor(task, result);
+        execute(ftask);
+        return ftask;
+    }
+
+    /**
+     * @throws RejectedExecutionException {@inheritDoc}
+     * @throws NullPointerException       {@inheritDoc}
+     */
+    public <T> Future<T> submit(Callable<T> task) {
+        if (task == null) throw new NullPointerException();
+        RunnableFuture<T> ftask = newTaskFor(task);
+        execute(ftask);
+        return ftask;
+    }
+```
+
+可以看出，submit直接将执行体丢给了execute执行
+
+所以当你不需要一个结果，那么就老老实实使用execute，如果你需要的是一个空结果，那么 submit(yourRunnable) 与 submit(yourRunnable,null) 是等价的
+
 ## JVM
 
 ### 一，Java类为什么要采用双亲委派模型 
@@ -111,6 +152,10 @@ start启动的是线程
 继承**ClassLoader**然后重写其方法
 
 如果想打破双亲委派模型 重写findClass，否则重写loadClass
+
+## 并发
+
+
 
 ## IO
 
