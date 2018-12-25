@@ -153,6 +153,81 @@ start启动的是线程
 
 如果想打破双亲委派模型 重写findClass，否则重写loadClass
 
+### 四，Java垃圾回收如何确认垃圾
+
+引用计数（Java不采用），原因：内存开销，引用环
+
+可达性分析：从一定有用的东西（暂停虚拟机：局部变量，静态变量，Native所引用的对象，活动线程）出发，看能否访问
+
+### 五，Java的垃圾回收算法
+
+基础假设：大部分对象只存在很短的时间
+
+将内存分为新生代，老生代
+
+新生代分为Eden，Survivor1，Survivor2
+
+新生代的GC叫 MinorGC
+
+每次清理
+
+Eden+Survivor1 ->Survivor2
+
+Eden和Survivor1清理
+
+下一次
+
+Eden+Survivor2->Survivor1
+
+Eden和Survivor2清理
+
+当Survivor区存不下了或者超过年龄阈值（JVM默认15）就将年龄大的存放到老生代
+
+当老生代满了则进行Major/Full GC
+
+老生代采用Compact算法
+
+### 六，Java虚拟机的配置
+
+-XX:NewRatio  老生代/新生代比，默认2
+
+-XX:SurvivorRatio Eden/Survivor比例，默认8
+
+-XX:MaxTenuringThreshold 新生代转至老生代阈值，默认15
+
+### 七，内存持久代中包含什么
+
+1. ClassLoader读进来的Class，除系统CLass外
+2. 放置String.intern后的结果
+
+易出现OutOfMemoryError:PermGen Space
+
+### 八，解决OutOfMemoryError:PermGen Space
+
+-XX:MaxPermSize 调整大小
+
+### 九，Java1.8Metaspace和PermGen的区别
+
+1. Java1.8使用Metaspace，取消了PermGen Space
+2. String.intern的结果被放入堆
+3. Metaspace默认不设限制，使用系统内存
+
+### 十，谈谈Java垃圾回收机制
+
+1. 垃圾回收在什么时候运行
+
+   内存分配失败，还有调用`System.gc()`的时候
+
+2. 垃圾回收对什么对象进行回收
+
+   根据可达性分析来查找不用的对象
+
+3. 垃圾回收算法对内存划分了那些区域
+
+   新生代（Eden，Survivor1，Survivor2   copy算法），老生代（compact算法），持久代（Class）
+
+
+
 ## 并发
 
 
