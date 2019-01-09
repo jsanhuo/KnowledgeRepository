@@ -228,7 +228,19 @@ Eden和Survivor2清理
 
    新生代（Eden，Survivor1，Survivor2   copy算法），老生代（compact算法），持久代（Class）
 
+### 十一，对happens-after的理解
 
+- 操作执行顺序具有先后性
+- 后执行的操作能够看到先执行操作（在内存）的结果
+
+规定以下操作必须保证happens-after
+
+1. UnLock发生在Lock之前
+2. 写volatile发生在读volatile之前
+3. 线程start发生在线程所有动作之前
+4. 线程中所有操作发生在join之前
+5. 构造函数发生在finalizer开始之前
+6. 传递性：happens-after关系满足传递性
 
 ## 并发
 
