@@ -20,3 +20,13 @@
 6.apache取回资源并组成一个http响应(string)
 7.apache将http响应返回给浏览器
 8.解析http响应，并显示到http浏览器
+
+### 三，Tomcat的URL匹配规则
+
+精确匹配，路径匹配，扩展名匹配，缺省匹配
+
+- **规则1：精确匹配，使用contextVersion的exactWrappers (如 /first.do )**
+- **规则2：前缀匹配，使用contextVersion的wildcardWrappers （ 以 /\* 结尾）**
+- **规则3：扩展名匹配，使用contextVersion的extensionWrappers （ 以 \*.  开头）**
+- **规则4：使用资源文件来处理servlet，使用contextVersion的welcomeResources属性，这个属性是个字符串数组  （如默认首页 index.jsp）**
+- **规则5：使用默认的servlet，使用contextVersion的defaultWrapper ( 以 / 表示)**

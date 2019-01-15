@@ -60,6 +60,192 @@ https://www.cnblogs.com/onepixel/articles/7674659.html
 
 ### 一，快速排序
 
+递归代码
+
+```java
+/**
+ * 快速排序主函数
+ * @param array
+ */
+public static void quickSort(int[] array)
+{
+    //第一次调用快排
+    Quick(array, 0, array.length-1);
+}
+
+
+/**
+ * 返回基准下标,相当于每次为一个元素找到其位置，将数组分为两部分
+ * @param array 数组
+ * @param start 开始下标
+ * @param end   结束下标
+ * @return      基准下标
+ */
+public static int partion(int[] array,int low,int hight)
+{   
+    //找到一个基准
+    int temp = array[low];  
+    //遍历直到所有遍历完
+    while(low<hight)
+    {   
+        //从右向左找比temp小的
+        while(low<hight&&array[hight]>=temp)
+        {
+            --hight;
+        }
+        //如果相遇了，或交错了，直接跳出
+        if(low>=hight)
+        {
+            break;
+        }
+        //如果符合条件，将小的放到当前low的位置。
+        else
+        {
+            array[low] = array[hight];
+        }
+        //从左向右找比temp大的
+        while(low<hight&&array[low]<=temp)
+        {
+            ++low;
+        }
+        //如果遍历完了，跳出
+        if(low>=hight)
+        {
+            break;
+        }
+        //如果符合条件，将大的放到当前hight位置
+        else
+        {
+            array[hight] = array[low];
+        }
+    }
+    //将基准放入low
+    array[low] = temp;
+    //返回low
+    return low;
+}
+
+
+
+/**
+ * 快速排序递归
+ * @param array 数组
+ * @param start 开始下标
+ * @param end   结束下标
+ */
+public static void Quick(int[] array,int start,int end)
+{   //先找到基准下标
+    int par = partion(array, start, end);
+    //判断基准的左边是不是还有1个以上元素，如果是再调用快排
+    if(par>start+1)
+    {
+        Quick(array, start, par-1);
+    }
+    //判断基准的右边是不是还有1个以上元素，如果是再调用快排
+    if(par<end-1)
+    {
+        Quick(array, par+1, end);
+    }
+}
+```
+
+非递归
+
+```java
+/**
+ * 快速排序非递归
+ * @param array 目标数组
+ */
+public static void quickSort1(int[] array)
+{
+    LinkStack a = new LinkStack();
+    int low = 0;
+    int hight = array.length-1;
+    int par = partion(array, low, hight);
+    if(par>low+1)
+    {
+        a.push(low);
+        a.push(par-1);
+    }
+    if(par<hight-1)
+    {
+        a.push(par+1);
+        a.push(hight);
+    }
+    //出栈
+    while(!a.isEmpty())
+    {
+        hight = a.pop();
+        low = a.pop();
+        par = partion(array, low, hight);
+        if(par>low+1)
+        {
+            a.push(low);
+            a.push(par-1);
+        }
+        if(par<hight-1)
+        {
+            a.push(par+1);
+            a.push(hight);
+        }
+    }
+}
+
+
+/**
+ * 返回基准下标,相当于每次为一个元素找到其位置，将数组分为两部分
+ * @param array 数组
+ * @param start 开始下标
+ * @param end   结束下标
+ * @return      基准下标
+ */
+public static int partion(int[] array,int low,int hight)
+{   
+    //找到一个基准
+    int temp = array[low];  
+    //遍历直到所有遍历完
+    while(low<hight)
+    {   
+        //从右向左找比temp小的
+        while(low<hight&&array[hight]>=temp)
+        {
+            --hight;
+        }
+        //如果相遇了，或交错了，直接跳出
+        if(low>=hight)
+        {
+            break;
+        }
+        //如果符合条件，将小的放到当前low的位置。
+        else
+        {
+            array[low] = array[hight];
+        }
+        //从左向右找比temp大的
+        while(low<hight&&array[low]<=temp)
+        {
+            ++low;
+        }
+        //如果遍历完了，跳出
+        if(low>=hight)
+        {
+            break;
+        }
+        //如果符合条件，将大的放到当前hight位置
+        else
+        {
+            array[hight] = array[low];
+        }
+    }
+    //将基准放入low
+    array[low] = temp;
+    //返回low
+    return low;
+}
+```
+
+
+
 ### 二，归并排序
 
 ### 三，冒泡排序
