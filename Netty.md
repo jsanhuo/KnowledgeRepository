@@ -29,3 +29,7 @@ ChannelPipeline ：ChannelPipeline 提供了 ChannelHandler 链的容器，并�
 在SimpleChannelInboundHandler中的channelRead0方法执行完毕以后，会释放掉接受消息的ByteBuf
 
 在ChannelInboundHandler中的channelRead方法执行完毕后，不会释放传输消息的ByteBuf，因为write操作时异步的，并不知道其是否执行完成。其ByteBuf的释放实际为channelReadComplete()方法中，当 writeAndFlush()方 法被调用时被释放。
+
+### 五，ChannelHandlerContext 和Channel和ChannelPipeline之间的关系
+
+当Channel被绑定到ChannelPipeline上的时候会创建ChannelHandlerContext。ChannelPipeline包括了所有绑定的ChannelHandler
