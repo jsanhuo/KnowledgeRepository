@@ -54,5 +54,13 @@ chmod ？？？ filename
 
    ![计算机生成了可选文字: 55JAVAHOME=/usr/java/jdk1.7.0_80 57CLASSPATH=/usr/java/jdk1.7.080/lib. 58PATH=$JAVAHOME/bin：SPATH 5@exportJAVAHOMECLASSPAT](assets/clip_image001.png)
 
+   JAVAHOME=/usr/java/jdk1.7.0_80 
+
+   CLASSPATH=/usr/java/jdk1.7.0_80/lib:. 
+
+   PATH=$JAVAHOME/bin:\$PATH 
+
+   export JAVA_HOME CLASSPATH
+
 4. 重启
 

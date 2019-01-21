@@ -52,6 +52,81 @@ https://blog.csdn.net/qq_27093465/article/details/78544505
 
 需要注意的是序列化的类必须实现Serializable接口，并且被transient修饰的 字段不参与序列化
 
+### 四，Java的动态代理
+
+JDK自带的动态代理只能代理接口，并且需要一个实现了InvocationHandler的处理类,然后通过**Proxy.newProxyInstance**来创建代理对象。（注意JDK自带的只能代理接口，如果需要代理类，需要使用第三方的代理如CGlib等）
+
+1.创建接口
+
+```java
+public interface Subject {
+    public String getName();
+}
+
+```
+
+2.创建真实类
+
+```java
+public class RealSubject implements Subject {
+    @Override
+    public String getName() {
+        return "RealSubject";
+    }
+}
+
+```
+
+3.创建处理类
+
+```java
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+public class Handler implements InvocationHandler {
+    private RealSubject realSubject;
+
+    public Handler(RealSubject realSubject) {
+        this.realSubject = realSubject;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("before");
+        Object result = null;
+        try {
+            result = method.invoke(realSubject, args);
+        }catch (Exception e){
+            System.out.println("Exception");
+            throw e;
+        }finally {
+            System.out.println("after");
+        }
+        return result;
+    }
+}
+
+
+```
+
+4.创建代理对象
+
+```java
+Subject o = (Subject)
+                Proxy.newProxyInstance(Main.class.getClassLoader(), 
+                        new Class[]{Subject.class}, 
+                        new Handler(new RealSubject()));
+System.out.println(o.getName());
+```
+
+5.执行
+
+before
+after
+RealSubject
+
+可以看到，在真实类的执行前后，加入了代理处理类的逻辑，通过这种机制，可以实现AOP的切面编程。
+
 ## 排序
 
 ![1545921563405](assets/1545921563405.png)
