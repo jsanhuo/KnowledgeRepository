@@ -42,3 +42,27 @@ transaction-isolation = REPEATABLE-READ
 ```
 
 MySQL默认为**REPEATABLE-READ**
+
+### 四，关系型数据库的特点
+
+- 基于关系代数理论
+- 缺点：表结构不直观，实现复杂，速度慢
+- 优点：健壮性高，社区庞大
+
+### 五，乐观锁的使用
+
+通过版本号
+
+```sql
+update product set count=20 where productid = 2 and count=21
+```
+
+此处模拟商场购物后数目减少1，此处的count=21就相当于版本号的确认
+
+读取数据，记录timestamp或者count，version等
+
+检查版本号 和提交数据
+
+### 六，事务的性能太慢怎么办？
+
+通过乐观锁
