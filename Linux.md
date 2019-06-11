@@ -64,3 +64,13 @@ chmod ？？？ filename
 
 4. 重启
 
+
+
+
+
+
+
+# xxxxxx
+
+
+

@@ -200,6 +200,19 @@ Spring提供DataSourceTransactionManager
 - bean工厂，提供基本的DI支持
 - 应用上下文，基于BeanFactory构建，提供框架级别的服务
 
+### 八，Spring配置文件中，配置的对象有哪些？
+
+1. InternalResourceViewReslover	视图解析器
+2. 处理器映射
+3. 处理器适配器
+4. bean对象
+5. SpringMVC所需要的bean对象
+6. 应用程序用的bean对象
+
+### 九，启动Spring MVC模块接受用户请求
+
+
+
 ## SpringMVC
 
 ### 一，请求是怎么派发的
