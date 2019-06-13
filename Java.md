@@ -181,7 +181,48 @@ java集合中，主要分为以下几个 Set  List Map Queue 等几大类。
 
 Collection 主要为 Set List Queue 的父级接口。
 
-Set接口有两个常用的实现类， HashSet 和TreeSet   List接口有ArrayList和 Vector两个实现类
+Set接口有两个常用的实现类， HashSet 和TreeSet   List接口有ArrayList和 Vector两个实现类。
+
+Map是一个将key映射到value的对象，一个Map不可能包含重复的key,每个key最多只能映射一个value。
+
+#### 1) 各集合的特点
+
+​     Set集合，无序的，不允许重复。
+
+​     List集合，有序，可以允许重复，可以通过索引来访问，List更像长度动态变幻的数组。
+
+#### 2）为何Collection不从Cloneable和Serializable接口继承？
+
+​    collection接口指定一组对象，对象即为它的元素。如何维护这些元素由Collection的具体实现决定。例如，一些如List的Collection实现允许重复的元素，而其它的如Set就不允许。很多Collection实现有一个公有的clone方法。然而，把它放到集合的所有实现中也是没有意义的。这是因为Collection是一个抽象表现。重要的是实现。
+
+当与具体实现打交道的时候，克隆或序列化的语义和含义才发挥作用。所以，具体实现应该决定如何对它进行克隆或序列化，或它是否可以被克隆或序列化。
+
+在所有的实现中授权克隆和序列化，最终导致更少的灵活性和更多的限制。特定的实现应该决定它是否可以被克隆和序列化。
+
+#### 3)ArrayList和LinkedList有何区别？
+
+​      1、ArrayList可以动态增长和减缩的索引序列，它是基于数组实现的List类。数据元素类型为Object类，即可以存放所有类型。它提供对元素的索引访问，复杂度为O(1)。但LinkedList存储一系列的节点数据，每个节点都与前一个和下一个节点相连接。所以，尽管有使用索引获取元素的方法，内部实现是从起始点开始遍历，遍历到索引的节点然后返回元素，时间复杂度为O(n)，比ArrayList要慢。 ArrayList是线程不安全的，当多条线程访问同一个ArrayList集合时，程序需要手动保证该集合的同步性。都可以存放空值，都是线程不安全。
+
+​    2、与ArrayList相比，在LinkedList中插入、添加和删除一个元素会更快，因为在一个元素被插入到中间的时候，不会涉及改变数组的大小，或更新索引。
+
+​    3、LinkedList比ArrayList消耗更多的内存，因为LinkedList中的每个节点存储了前后节点的引用。
+
+​          1）arrayList可以存放null。
+​         2）arrayList本质上就是一个elementData数组。
+​         3）arrayList区别于数组的地方在于能够自动扩展大小，其中关键的方法就是gorw()方法。
+​         4）arrayList中removeAll(collection c)和clear()的区别就是removeAll可以删除批量指定的元素，而clear是        全是删除集合中的元素。
+​        5）arrayList由于本质是数组，所以它在数据的查询方面会很快，而在插入删除这些方面，性能下降很多，有   移动很多数据才能达到应有的效果
+​       6）arrayList实现了RandomAccess，所以在遍历它的时候推荐使用for循环。
+
+#### 4)HashMap是如何工作的？
+
+​    
+
+   
+
+
+
+
 
 
 
