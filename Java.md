@@ -38,7 +38,13 @@ String在进行修改后会生成新的对象，其内部char[]通过finalString
 
 StringBuffer是线程安全的
 
-StringBuilder线程不安全适合在单线程下运行
+StringBuilder线程不安全,适合在单线程下运行
+
+String ,Stringbugffer,stringbuilder都适合进行字符串的拼接。String字符串拼接原理是在内部使用了stringbuilder对象 Stringbuffer是sychnonize的，适合多线程。
+
+String，stringbuilder,Stringbuffer都可以进行字符串的拼接。效率Stringbulider<Stringbuffer<"+"
+
+ 因为Stringbuffer要处理线程同步问题，所以时间比较长，“+”是因为在拼接的时候，会new Stringbuilder()对象，在for循环里，每次都要new一个，所以，效率比较低下。
 
 ### 三，什么是序列化和反序列化
 
@@ -244,7 +250,7 @@ Map是一个将key映射到value的对象，一个Map不可能包含重复的key
 
 ​          hashMap允许空键值(null ,key),非线程安全，HashTable不允许空的key value,hashTable是线程安全的。但是两者采用的hash算法都是一样的，所以性能不会有很大的差别。
 
-####      6）
+
 
 ​    
 
