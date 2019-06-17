@@ -179,7 +179,7 @@ java只支持单继承，多接口
 
 ### 八，集合
 
-![1560260007538](assets/1560260007538.png)
+![1560260007538](../../%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/KnowledgeRepository/assets/1560260007538.png)
 
 Collection为集合层级的根接口。一个集合代表一组对象，这些对象即为它的元素。
 
@@ -246,7 +246,7 @@ Map是一个将key映射到value的对象，一个Map不可能包含重复的key
 
 ​    通过计算算出hash值，找到数组下标索引，然后在便利链表。
 
-####     5）hashMap和hashTable的区别
+#### 5）hashMap和hashTable的区别
 
 ​          hashMap允许空键值(null ,key),非线程安全，HashTable不允许空的key value,hashTable是线程安全的。但是两者采用的hash算法都是一样的，所以性能不会有很大的差别。
 
@@ -266,7 +266,7 @@ Map是一个将key映射到value的对象，一个Map不可能包含重复的key
 
 
 
-![1545921563405](assets/1545921563405.png)
+![1545921563405](../../%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/KnowledgeRepository/assets/1545921563405.png)
 
 https://www.cnblogs.com/onepixel/articles/7674659.html
 
@@ -458,7 +458,51 @@ public static int partion(int[] array,int low,int hight)
 
 
 
-### 二，归并排序（×）
+### 二，归并排序
+
+```java
+public static void mergeSort(int a[],int left,int right){
+        if(left<right) {
+            int mid = (left + right) / 2;
+
+            mergeSort(a, left, mid);  //将原来的数组划分为两个数组
+            mergeSort(a,mid+1,right);
+            merge(a,left,mid,right); //将划分排序好的两个数组合并成原来的数组
+
+        }
+    }public static void merge(int[] arr, int L, int mid, int R) {
+        int[] temp = new int[R - L + 1];
+       // System.out.println(" 长度： "+temp.length);
+        int i = 0;
+        int p1 = L;
+        int p2 = mid + 1;
+        // 比较左右两部分的元素，哪个小，把那个元素填入temp中
+        while(p1 <= mid && p2 <= R) {
+            temp[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
+        }
+        // 上面的循环退出后，把剩余的元素依次填入到temp中
+        // 以下两个while只有一个会执行
+        while(p1 <= mid) {
+            temp[i++] = arr[p1++];
+        }
+        while(p2 <= R) {
+            temp[i++] = arr[p2++];
+        }
+        // 把最终的排序的结果复制给原数组
+        for(i = 0; i < temp.length; i++) {
+            arr[L + i] = temp[i];
+        }
+    }
+    public static void printarr(int a[]){
+        for (int i = 0; i <a.length;i++) {
+            System.out.print(a[i]+" ");
+
+        }
+    }
+    
+```
+
+
 
 ### 三，冒泡排序（×）
 
@@ -737,9 +781,9 @@ Eden和Survivor2清理
 
   好处：避免死锁，提升封装性，原理在于：**加锁次数计数器**
 
--  不可中断：如果锁被别人获取，只能选择等待或者阻塞
+- 不可中断：如果锁被别人获取，只能选择等待或者阻塞
 
-###  七，synchronized使用的注意点
+### 七，synchronized使用的注意点
 
 1. 锁对象不能为空
 2. 作用域不能过大
