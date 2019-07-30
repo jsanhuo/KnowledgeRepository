@@ -838,11 +838,44 @@ Eden和Survivor2清理
 规定以下操作必须保证happens-after
 
 1. UnLock发生在Lock之前
+
 2. 写volatile发生在读volatile之前
+
 3. 线程start发生在线程所有动作之前
+
 4. 线程中所有操作发生在join之前
+
 5. 构造函数发生在finalizer开始之前
+
 6. 传递性：happens-after关系满足传递性
+
+   ### 十二、java异常处理
+
+   #### checked Exception 和 Uncheckd Exception
+
+   RuntimeException极其子类：Unckecked
+
+   IllegalArgumentException ,ClassCastException,IllegalStateException,NullPointException,....
+
+   其他Exception :Checked
+
+   IoException ,InterrupteException,PraseException,.....
+
+   #### 如何处理异常
+
+     写日志
+
+     执行相关逻辑
+
+   ####  如何不处理Checked Exception
+
+      如果能，添加throws定义
+
+      否则，将Checked Exception转换成 Unchecked Exception，再抛出
+
+      转换时，必须带上Case;
+
+   ​    throw  new  RuntimeException(checkedException);
 
 ## 并发
 
