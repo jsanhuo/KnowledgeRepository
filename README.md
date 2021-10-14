@@ -2,7 +2,7 @@
 
 沉迷学习无法自拔
 
-
+建议使用Typora进行查阅
 
 [Java](./Java.md)
 
@@ -25,3 +25,4 @@
 [JavaWeb](./JavaWeb.md)
 
 [JVM](https://blog.csdn.net/qq_29373285/article/details/85254407)
+

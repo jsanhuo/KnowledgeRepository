@@ -2,7 +2,93 @@
 
 # MySQL
 
-## 基础知识
+## 基础
+
+### 数据库命令
+
+\c终止命令执行
+
+查看所有数据库:
+
+```sql
+show databases;
+```
+
+使用某个数据库：
+
+```sql
+use databaseName;
+```
+
+创建数据库：
+
+```sql
+create database databaseName;
+```
+
+删除数据库
+
+```sql
+drop database databaseName;
+```
+
+查看某个数据库下有那些表
+
+```sql
+show tables;
+```
+
+导入数据
+
+```sql
+source SQLpath
+```
+
+查询表中全部数据
+
+```sql
+select * from tableName;
+```
+
+查看表结构
+
+```sql
+desc(describe) tableName;
+```
+
+  查看MYSQL数据库版本号
+
+```sql
+select version();
+```
+
+查看当前使用的数据库
+
+```sql
+select database();
+```
+
+ 
+
+### SQL语句的分类：
+
+DQL：数据查询语言（select）
+
+DML：数据操作语言（对表中数据进行增删改的，insert,delete,update）
+
+DDL：数据定义语言（操作表的结构而不是数据，create，drop，alter）
+
+TCL：事务控制语言（包括事务提交commit，事务回滚rollback）
+
+DCL：数据控制语言（授权grant，撤销权限revoke）
+
+
+
+
+
+
+
+## 进阶
 
 ### 一，范式的理解
 
