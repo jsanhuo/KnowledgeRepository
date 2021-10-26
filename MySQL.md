@@ -197,13 +197,13 @@ select * from [表名] order by [字段名] asc,[字段名] asc;
 
 多行处理函数的特点：输入多行，最终输出一行。
 
-| 函数名 | 功能   |
-| ------ | ------ |
-| count  | 计数   |
-| sum    | 求和   |
-| avg    | 平均值 |
-| max    | 最大值 |
-| min    | 最小值 |
+| 函数名 | 功能                                                         |
+| ------ | ------------------------------------------------------------ |
+| count  | 计数:count(具体字段)：统计该字段下所有不为NULL的元素的总数。count(*)：统计总行数，记录数 |
+| sum    | 求和                                                         |
+| avg    | 平均值                                                       |
+| max    | 最大值                                                       |
+| min    | 最小值                                                       |
 
 注意：
 
@@ -213,7 +213,34 @@ select * from [表名] order by [字段名] asc,[字段名] asc;
 
 分组函数自动忽略`NULL`,不需要提前处理
 
+### 什么是分组查询？
 
+在实际应用中，可能需要先进行分组，对每一组数据进行操作
+
+```
+select ... from ... group by ... having ...
+```
+
+having可以对分组后的数据进行过滤，但是having不能单独使用，必须和group by联合使用。
+
+优化策略：尽量使用where，where使用不了了再使用having。
+
+### 关键字组合一起
+
+```
+select ... from ... where ... group by ... order by ... having ...
+```
+
+1. from
+2. where
+3. group by
+4. having
+5. select
+6. order by
+
+在一条select语句当中，如果有group by语句的话，select后面只能跟：参与分组的字段，以及分组函数，其他一律不能跟。
+
+分组可以多字段联合分组。
 
 ## 进阶
 
