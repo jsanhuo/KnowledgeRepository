@@ -185,7 +185,7 @@ select * from [表名] order by [字段名] asc,[字段名] asc;
 | str_to_date                                   | 将字符串转化成日期                                           |
 | date_format                                   | 格式化日期                                                   |
 | format                                        | 设置千分位                                                   |
-| round                                         | 四舍五入（数值，保留位数：正数表示保留小数位：如1代表保留1位小数，负数代表保留整数位数，如1为保留到十位） |
+| round                                         | 四舍五入（数值，保留位数：正数表示保留小数位：如1代表保留1位小数，负数代表保留整数位数，如-1为保留到十位） |
 | rand()                                        | 生成随机数0-1之间                                            |
 | ifnull                                        | 可以将null转换为一个具体值，存在原因:在所有数据库中有NULL参与的数学运算，最终结果都为NULL，ifnull（字段，默认值） |
 | concat                                        | 字符串拼接                                                   |
@@ -241,6 +241,16 @@ select ... from ... where ... group by ... order by ... having ...
 在一条select语句当中，如果有group by语句的话，select后面只能跟：参与分组的字段，以及分组函数，其他一律不能跟。
 
 分组可以多字段联合分组。
+
+### 去除重复记录
+
+原表数据不会被修改
+
+```
+select distinct [字段名] from table
+```
+
+`distinct`只能出现在所有字段的最前方。
 
 ## 进阶
 
