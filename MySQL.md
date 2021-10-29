@@ -155,13 +155,13 @@ select可以跟某个表的字段名（也可以等同看做变量名），也�
 
 降序
 
-```
+```sql
 select * from [表名] order by [字段名] desc,[字段名] desc;
 ```
 
 升序
 
-```
+```sql
 select * from [表名] order by [字段名] asc,[字段名] asc;
 ```
 
@@ -217,7 +217,7 @@ select * from [表名] order by [字段名] asc,[字段名] asc;
 
 在实际应用中，可能需要先进行分组，对每一组数据进行操作
 
-```
+```sql
 select ... from ... group by ... having ...
 ```
 
@@ -227,7 +227,7 @@ having可以对分组后的数据进行过滤，但是having不能单独使用�
 
 ### 关键字组合一起
 
-```
+```sql
 select ... from ... where ... group by ... order by ... having ...
 ```
 
@@ -246,7 +246,7 @@ select ... from ... where ... group by ... order by ... having ...
 
 原表数据不会被修改
 
-```
+```sql
 select distinct [字段名] from table
 ```
 
@@ -278,7 +278,7 @@ select distinct [字段名] from table
 
 #### 内连接之等值连接
 
-```
+```sql
 select ... from [table1] join [table2] on [等值条件] where ...
 ```
 
@@ -286,7 +286,7 @@ sql99 语法 结构清晰，表的连接条件和where条件分离。
 
 #### 内连接之非等值连接
 
-```
+```sql
 select ... from [table1] join [table2] on [连接条件] where ...
 ```
 
@@ -294,11 +294,43 @@ select ... from [table1] join [table2] on [连接条件] where ...
 
 #### 内连接之自连接
 
-```
+```sql
 select ... from [table] a join [table] b on a.[字段  ] == b.[字段]  
 ```
 
+#### 外连接
 
+```sql
+select ... from [table1] right/left join [table2] on ...
+```
+
+右外连接会把`join`右边表的所有数据都显示
+
+左外连接会把`join`左边表的所有数据都显示
+
+在外连接之中两张表连接产生了主次关系。
+
+任何一个右连接都有左连接的写法，任何一个左连接都有右连接的写法。
+
+#### 多张表连接
+
+```sql
+select ... from a join b on a和b的连接条件 join c on a和c的连接条件 join d on a和d的连接条件
+```
+
+一条sql中内连接和外连接可以混合使用。
+
+### 子查询
+
+select语句中嵌套select语句，被嵌套的select语句被称为子查询。
+
+```
+select ...(select) from ...(select) where ...(select)
+```
+
+form后的select可以建立一个临时表。
+
+select后嵌套的select语句查询的结果只能是一个，多于一条会报错。
 
 ## 进阶
 
@@ -334,7 +366,7 @@ SET [SESSION|GLOBAL] TRANSACTION ISOLATION LEVEL [READ UNCOMMITTED|READ COMMITTE
 
 在配置文件中
 
-```
+```sql
 [mysqld]
 transaction-isolation = REPEATABLE-READ
 ```
