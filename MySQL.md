@@ -237,6 +237,7 @@ select ... from ... where ... group by ... order by ... having ...
 4. having
 5. select
 6. order by
+7. limit
 
 在一条select语句当中，如果有group by语句的话，select后面只能跟：参与分组的字段，以及分组函数，其他一律不能跟。
 
@@ -332,7 +333,39 @@ form后的select可以建立一个临时表。
 
 select后嵌套的select语句查询的结果只能是一个，多于一条会报错。
 
-## 进阶
+
+
+### union合并查询结果集
+
+union效率较高，相比于`where ... and ...`
+
+union进行结果集合并的时候，要求两个结果集列数相同，数据类型相同。
+
+
+
+### limit
+
+limit是将结果集的一部分取出来，通常是用在分页查询中。
+
+完整用法
+
+```
+select ... from ... ... limit startIndex, length
+```
+
+缺省用法
+
+```
+select ... from ... ... limit length
+```
+
+Mysql中limit在order by 之后执行。
+
+
+
+
+
+
 
 ### 一，范式的理解
 
