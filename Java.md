@@ -259,11 +259,21 @@ Map是一个将key映射到value的对象，一个Map不可能包含重复的key
 
    
 
+### Comparable接口
 
+```
+int compareTo(Object o)
+```
 
+a.compareTo(b)
 
+如果a等于b，则返回值 0；
 
+如果a小于b，则返回一个小于 0 的值；
 
+如果a大于b，则返回一个大于 0 的值。
+
+等同于 a-b 
 
 ## 排序
 
